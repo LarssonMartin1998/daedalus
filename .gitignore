@@ -1,0 +1,9 @@
+# CMake and Conan
+build/
+CMakeUserPresets.json
+.cache/
+compile_commands.json
+grep
+# Ignore clang tools since they're symlinked from atlas.
+.clang-format
+.clang-tidy
