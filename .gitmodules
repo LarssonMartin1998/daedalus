@@ -1,0 +1,3 @@
+[submodule "atlas"]
+	path = atlas
+	url = git@github.com:LarssonMartin1998/atlas.git
