@@ -15,6 +15,14 @@ all: clean setup build analyze test
 
 .DEFAULT_GOAL := build
 
+# Generate cmake target
+.PHONY: generate
+generate:
+	@echo "Generating the project..."
+	@mkdir -p $(BUILD_DIR)
+	@cd $(BUILD_DIR) && $(CMAKE) $(CMAKE_FLAGS) ..
+	@echo "Generation complete."
+
 # Setup target
 .PHONY: setup
 setup:
@@ -24,7 +32,7 @@ setup:
 	@ln -sf atlas/.clang-tidy .clang-tidy
 	@mkdir -p $(BUILD_DIR)
 	@$(CONAN) $(CONAN_FLAGS)
-	@cd $(BUILD_DIR) && $(CMAKE) $(CMAKE_FLAGS) ..
+	@make generate
 	@echo "Environment setup complete."
 
 # Build target
