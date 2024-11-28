@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IGame.hpp"
+#include "core/IGame.hpp"
 
 namespace daedalus {
 class IDaedalus : public atlas::core::IGame {
