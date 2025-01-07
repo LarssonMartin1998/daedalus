@@ -1,0 +1,5 @@
+active_profile = "main"
+
+[all_profiles.main]
+name = "main"
+binary_path = "build/daedalus"
