@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "codelldb",
+            "request": "launch",
+            "name": "Launch Debug Build",
+            "program": "${workspaceFolder}/build/daedalus",
+            "cwd": "${workspaceFolder}",
+            "args": [],
+            "stopOnEntry": false,
+            "environment": []
+        }
+    ]
+}

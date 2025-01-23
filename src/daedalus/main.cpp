@@ -5,8 +5,9 @@
 #include "Daedalus.hpp"
 
 auto main() -> int {
-    auto engine = atlas::core::Engine{std::make_unique<daedalus::Daedalus>()};
-    engine.run();
+    std::make_shared<atlas::core::Engine>(
+        std::make_unique<daedalus::Daedalus>())
+        ->run();
 
     return 0;
 }

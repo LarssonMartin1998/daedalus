@@ -3,7 +3,7 @@
 #include "core/IGame.hpp"
 
 namespace daedalus {
-class IDaedalus : public atlas::core::IGame {
+class IDaedalus : virtual public atlas::core::IGame {
   public:
     ~IDaedalus() override = default;
 
