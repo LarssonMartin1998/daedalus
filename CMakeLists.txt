@@ -12,3 +12,7 @@ add_subdirectory(src)
 include(AtlasModules.cmake)
 add_subdirectory(atlas)
 target_link_libraries(daedalus PRIVATE atlas)
+
+if(ENABLE_INSTALL)
+  install(TARGETS daedalus DESTINATION bin)
+endif()
