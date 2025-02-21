@@ -15,14 +15,16 @@
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+      stdenv = pkgs.llvmPackages.stdenv;
     in
     {
-      packages.${system}.default = pkgs.stdenv.mkDerivation {
+      packages.${system}.default = stdenv.mkDerivation {
         pname = "atlas";
         version = "0.1.0";
         src = ./.;
 
         nativeBuildInputs = with pkgs; [
+          clang-tools
           clang
           ninja
           cmake
