@@ -11,17 +11,28 @@ using namespace atlas;
 using hephaestus::IComponent;
 
 struct Transform : public IComponent {
-    int x, y, z = 0;
+    int x{}, y{}, z{};
 };
 
 struct Velocity : public IComponent {
-    int x, y, z = 0;
+    int x{}, y{}, z{};
+};
+
+struct Health : public IComponent {
+    int health{};
 };
 
 namespace daedalus {
 auto Daedalus::start() -> void {
     auto& hephaestus = get_engine().get_module<hephaestus::Hephaestus>().get();
-    hephaestus.create_entity<Transform, Velocity>();
+    hephaestus.create_entity(Velocity{},
+                             Transform{
+                                 .x = 10000000,
+                                 .y = -9955123,
+                             },
+                             Health{.health = 100});
+
+    hephaestus.create_entity(Health{.health = 5000});
 
     hephaestus.create_system(
         [](const core::IEngine& engine,
@@ -47,6 +58,13 @@ auto Daedalus::start() -> void {
         for (const auto& [transform] : query.get()) {
             std::println("Transform: x={}, y={}, z={}", transform.x,
                          transform.y, transform.z);
+        }
+    });
+
+    hephaestus.create_system([](const core::IEngine& engine,
+                                const hephaestus::Query<Health>& query) {
+        for (const auto& [health] : query.get()) {
+            std::println("Health: {}", health.health);
         }
     });
 
