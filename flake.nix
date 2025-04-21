@@ -18,12 +18,20 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
+        pkgsCross = pkgs.pkgsCross.mingwW64;
+
         stdenv = pkgs.llvmPackages.stdenv;
+        xstdenv = pkgsCross.stdenv;
+
+        pname = "daedalus";
+        version = "0.1.0";
+
+        engine_src = atlas.packages.${system}.atlas.src;
       in
       {
-        packages.default = stdenv.mkDerivation {
-          pname = "atlas";
-          version = "0.1.0";
+        packages.daedalus = stdenv.mkDerivation {
+          pname = pname;
+          version = version;
           src = ./.;
 
           nativeBuildInputs = with pkgs; [
@@ -33,17 +41,29 @@
             cmake
           ];
 
+          buildInputs =
+            with pkgs;
+            [
+              vulkan-headers
+              vulkan-loader
+            ]
+            ++ lib.optional stdenv.isDarwin [ moltenvk ];
+
           cmakeFlags = [
             "-DCMAKE_BUILD_TYPE=Release"
             "-DBUILD_TESTS=ON"
             "-DENABLE_INSTALL=ON"
           ];
 
+          # Needed on Linux: libvulkan is loaded with dlopen()
+          # so it is *not* seen by patchelf → keep the RPATH.
+          # dontPatchELF = stdenv.isLinux; # :contentReference[oaicite:0]{index=0}
+
           # Were depending on running `add_subdirectory(atlas)` in the CMakeLists.txt
           # This has a lot of benefits when it comes to the modularity of the project, but it
           # also hinders us from just adding the library as an flake- and buildInput.
           preConfigure = ''
-            cp -r ${atlas.src} $(pwd)/atlas
+            cp -r ${engine_src} atlas
             chmod -R u+w atlas
           '';
 
@@ -52,6 +72,41 @@
             ctest --output-on-failure
           '';
         };
+
+        packages.daedalus-windows = xstdenv.mkDerivation {
+          pname = pname;
+          version = version;
+          src = ./.;
+
+          buildInputs = with pkgsCross; [
+            vulkan-headers
+            vulkan-loader
+            glfw
+          ];
+
+          nativeBuildInputs = with pkgs; [
+            clang-tools
+            ninja
+            cmake
+          ];
+
+          cmakeFlags = [
+            "-DCMAKE_BUILD_TYPE=Release"
+            "-DBUILD_TESTS=OFF"
+            "-DENABLE_INSTALL=ON"
+          ];
+
+          # Were depending on running `add_subdirectory(atlas)` in the CMakeLists.txt
+          # This has a lot of benefits when it comes to the modularity of the project, but it
+          # also hinders us from just adding the library as an flake- and buildInput.
+          preConfigure = ''
+            cp -r ${engine_src} atlas
+            chmod -R u+w atlas
+          '';
+
+        };
+
+        packages.default = self.packages.${system}.daedalus;
       }
     );
 }

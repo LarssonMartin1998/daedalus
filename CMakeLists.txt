@@ -19,3 +19,7 @@ target_link_libraries(daedalus PRIVATE atlas)
 if(ENABLE_INSTALL)
   install(TARGETS daedalus DESTINATION bin)
 endif()
+
+if(MINGW)
+  target_link_libraries(daedalus PRIVATE atlas stdc++ stdc++exp)
+endif()
