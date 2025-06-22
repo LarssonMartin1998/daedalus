@@ -34,17 +34,23 @@ auto Daedalus::start() -> void {
     for (size_t i = 0; i < num_ents; ++i) {
         hephaestus.create_entity(Test{.lol = 42});
     }
+
     for (size_t i = 0; i < num_ents; ++i) {
         constexpr int vel = 1;
-        hephaestus.create_entity(Transform{.x = 0.0, .y = 0.0, .z = 0.0},
-                                 Velocity{.x = vel, .y = vel, .z = vel});
+        hephaestus.create_entity(
+            Transform{.x = 0.0, .y = 0.0, .z = 0.0},
+            Velocity{.x = vel, .y = vel, .z = vel}
+        );
     }
+
     constexpr int health = 5000;
     for (size_t i = 0; i < num_ents; ++i) {
         constexpr int vel = 10;
-        hephaestus.create_entity(Transform{.x = 0.0, .y = 0.0, .z = 0.0},
-                                 Velocity{.x = vel, .y = vel, .z = vel},
-                                 Health{.health = health});
+        hephaestus.create_entity(
+            Transform{.x = 0.0, .y = 0.0, .z = 0.0},
+            Velocity{.x = vel, .y = vel, .z = vel},
+            Health{.health = health}
+        );
     }
 
     hephaestus.create_entity(Health{.health = health});
@@ -58,22 +64,22 @@ auto Daedalus::start() -> void {
         transform.z += velocity.z * deltatime;
     });
 
-    hephaestus.create_system([](const core::IEngine& engine,
-                                std::tuple<Transform&> data) {
+    hephaestus.create_system([](const core::IEngine& engine, std::tuple<Transform&> data) {
         auto& [transform] = data;
         std::println("T: {}, {}, {}", transform.x, transform.y, transform.z);
     });
 
-    hephaestus.create_system(
-        [](const core::IEngine& engine, std::tuple<Test&> data) {
-            auto& [test] = data;
-            test.lol += 1;
-        });
+    hephaestus.create_system([](const core::IEngine& engine, std::tuple<Test&> data) {
+        auto& [test] = data;
+        test.lol += 1;
+    });
 
     std::println("Daedalus::start()");
 }
 
-auto Daedalus::shutdown() -> void { std::println("Daedalus::shutdown()"); }
+auto Daedalus::shutdown() -> void {
+    std::println("Daedalus::shutdown()");
+}
 
 auto Daedalus::should_quit() const -> bool {
     constexpr float game_lifetime = 1.F;
