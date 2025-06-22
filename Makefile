@@ -41,9 +41,6 @@ run:
 	@echo "-------------------"
 	@echo "Daedalus finished"
 
-.PHONY: build_run
-build_run: build run
-
 .PHONY: test
 test:
 	@echo "Running tests..."
