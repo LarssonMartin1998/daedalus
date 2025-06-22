@@ -30,9 +30,9 @@ struct Test : Component<Test> {
 namespace daedalus {
 auto Daedalus::start() -> void {
     auto& hephaestus = get_engine().get_module<hephaestus::Hephaestus>().get();
-    constexpr size_t num_ents = 1500000;
+    constexpr size_t num_ents = 100000;
     for (size_t i = 0; i < num_ents; ++i) {
-        hephaestus.create_entity(Test{.lol = 42});
+        hephaestus.create_entity(Test{.lol = 1});
     }
 
     for (size_t i = 0; i < num_ents; ++i) {
@@ -66,7 +66,7 @@ auto Daedalus::start() -> void {
 
     hephaestus.create_system([](const core::IEngine& engine, std::tuple<Transform&> data) {
         auto& [transform] = data;
-        std::println("T: {}, {}, {}", transform.x, transform.y, transform.z);
+        // std::println("T: {}, {}, {}", transform.x, transform.y, transform.z);
     });
 
     hephaestus.create_system([](const core::IEngine& engine, std::tuple<Test&> data) {
@@ -82,7 +82,7 @@ auto Daedalus::shutdown() -> void {
 }
 
 auto Daedalus::should_quit() const -> bool {
-    constexpr float game_lifetime = 1.F;
+    constexpr float game_lifetime = 5.F;
     return get_engine().get_clock().get_total_time() >= game_lifetime;
 }
 } // namespace daedalus

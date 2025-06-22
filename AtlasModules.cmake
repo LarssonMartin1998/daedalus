@@ -1,1 +1,1 @@
-set(ATLAS_MODULES Hephaestus)
+set(ATLAS_MODULES Hephaestus Iris)
