@@ -30,30 +30,30 @@ struct Test : Component<Test> {
 namespace daedalus {
 auto Daedalus::start() -> void {
     auto& hephaestus = get_engine().get_module<hephaestus::Hephaestus>().get();
-    constexpr size_t num_ents = 100000;
-    for (size_t i = 0; i < num_ents; ++i) {
+    constexpr size_t NUM_ENTS = 2051250;
+    for (size_t i = 0; i < NUM_ENTS; ++i) {
         hephaestus.create_entity(Test{.lol = 1});
     }
 
-    for (size_t i = 0; i < num_ents; ++i) {
-        constexpr int vel = 1;
+    for (size_t i = 0; i < NUM_ENTS; ++i) {
+        constexpr int VEL = 1;
         hephaestus.create_entity(
             Transform{.x = 0.0, .y = 0.0, .z = 0.0},
-            Velocity{.x = vel, .y = vel, .z = vel}
+            Velocity{.x = VEL, .y = VEL, .z = VEL}
         );
     }
 
-    constexpr int health = 5000;
-    for (size_t i = 0; i < num_ents; ++i) {
-        constexpr int vel = 10;
+    constexpr int HEALTH = 5000;
+    for (size_t i = 0; i < NUM_ENTS; ++i) {
+        constexpr int VEL = 10;
         hephaestus.create_entity(
             Transform{.x = 0.0, .y = 0.0, .z = 0.0},
-            Velocity{.x = vel, .y = vel, .z = vel},
-            Health{.health = health}
+            Velocity{.x = VEL, .y = VEL, .z = VEL},
+            Health{.health = HEALTH}
         );
     }
 
-    hephaestus.create_entity(Health{.health = health});
+    hephaestus.create_entity(Health{.health = HEALTH});
 
     hephaestus.create_system([](const core::IEngine& engine,
                                 std::tuple<Transform&, Velocity&> data) {
@@ -82,7 +82,7 @@ auto Daedalus::shutdown() -> void {
 }
 
 auto Daedalus::should_quit() const -> bool {
-    constexpr float game_lifetime = 5.F;
-    return get_engine().get_clock().get_total_time() >= game_lifetime;
+    constexpr float GAME_LIFETIME = 5.F;
+    return get_engine().get_clock().get_total_time() >= GAME_LIFETIME;
 }
 } // namespace daedalus
