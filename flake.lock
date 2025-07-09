@@ -6,8 +6,8 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1750347419,
-        "narHash": "sha256-BwOa6zu9nCAjmXP1NfOcXA4huXZCU0n7KrUnFybnAKI=",
+        "lastModified": 1751925198,
+        "narHash": "sha256-xJq7hGhxJ9fOcSgpPR+ueEp3aSt5y2KFSVSljCH/8Ug=",
         "path": "/home/larssonmartin/dev/git/daedalus/atlas",
         "type": "path"
       },
