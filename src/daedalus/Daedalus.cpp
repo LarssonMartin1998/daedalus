@@ -61,7 +61,7 @@ struct Lifetime : Component<Lifetime> {
 
 namespace daedalus {
 auto Daedalus::start() -> void {
-    auto& hephaestus = get_engine().get_module<hephaestus::Hephaestus>().get();
+    auto& hephaestus = get_engine().get_module<hephaestus::Hephaestus>();
 
     constexpr std::size_t NUM_ENTS_PER_COMPONENT_SETUP = 2000000;
 
