@@ -6,14 +6,17 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1751925198,
-        "narHash": "sha256-xJq7hGhxJ9fOcSgpPR+ueEp3aSt5y2KFSVSljCH/8Ug=",
-        "path": "/home/larssonmartin/dev/git/daedalus/atlas",
-        "type": "path"
+        "lastModified": 1752486115,
+        "narHash": "sha256-gdh+t0k7xucgzvj3YduAX07+eAhKWkCIrB6rCgf4d8M=",
+        "owner": "LarssonMartin1998",
+        "repo": "atlas",
+        "rev": "9c4386b9dcd6402d50d4141a2d095999f4d1695c",
+        "type": "github"
       },
       "original": {
-        "path": "/home/larssonmartin/dev/git/daedalus/atlas",
-        "type": "path"
+        "owner": "LarssonMartin1998",
+        "repo": "atlas",
+        "type": "github"
       }
     },
     "flake-utils": {

@@ -4,8 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    # atlas.url = "github:LarssonMartin1998/atlas";
-    atlas.url = "path:/home/larssonmartin/dev/git/daedalus/atlas";
+    atlas.url = "github:LarssonMartin1998/atlas";
   };
 
   outputs =
