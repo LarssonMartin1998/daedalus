@@ -12,49 +12,49 @@
 using namespace atlas;
 using hephaestus::Component;
 
-struct Transform : Component<Transform> {
+struct Transform : Component {
     double x{}, y{}, z{};
 };
 
-struct Velocity : Component<Velocity> {
+struct Velocity : Component {
     double x{}, y{}, z{};
 };
 
-struct Health : Component<Health> {
+struct Health : Component {
     int health{};
 };
 
-struct Test : Component<Test> {
+struct Test : Component {
     int lol{};
 };
 
-struct DeleteTimer : Component<DeleteTimer> {
+struct DeleteTimer : Component {
     double elapsed{};
     double max_time{};
 };
 
-struct Damage : Component<Damage> {
+struct Damage : Component {
     double value{};
     bool critical{false};
 };
 
-struct AI : Component<AI> {
+struct AI : Component {
     double intelligence{};
     int state{0};
 };
 
-struct Renderer : Component<Renderer> {
+struct Renderer : Component {
     int model_id{};
     double scale{1.0};
     bool visible{true};
 };
 
-struct Physics : Component<Physics> {
+struct Physics : Component {
     double mass{};
     double friction{};
 };
 
-struct Lifetime : Component<Lifetime> {
+struct Lifetime : Component {
     double max_time{};
     double elapsed{};
 };
